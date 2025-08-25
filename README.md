@@ -5,8 +5,6 @@
 
 DeepParameters is a comprehensive Python package for learning Conditional Probability Distributions (CPDs) using state-of-the-art neural network architectures. It provides a unified interface for experimenting with various deep learning approaches to probabilistic modeling.
 
-> 🎉 **Version 2.0.1** brings significant improvements: 9 neural architectures, 8 sampling methods, enhanced performance (26.5%-41.7% improvement), and beta stability!
-
 ## 🚀 Key Features
 
 - **9 Neural Network Architectures**: Simple NN, Advanced NN, LSTM, Autoencoder, VAE, BNN, Normalizing Flow, Ultra, Mega
