@@ -143,6 +143,72 @@ Groups nodes based on shared parent relationships. Nodes with the same parents a
 - Suitable for data with clustered family relationships
 - More efficient for hierarchical data structures
 
+### 📋 Basic Usage
+
+```python
+from deepparameters.core import DeepParametersLearner
+
+learner = DeepParametersLearner()
+
+# For hierarchical networks (recommended)
+cpds = learner.learn_network_parallel(
+    data=your_data,
+    network_structure=your_network,
+    parallel_style='parent_child'
+)
+
+# For complex interconnected networks (recommended)  
+cpds = learner.learn_network_parallel(
+    data=your_data,
+    network_structure=your_network,
+    parallel_style='topological'
+)
+```
+
+### 🎯 Style Selection Guide
+
+| Your Network Type   | Recommended     | Why?              |
+|---------------------|-----------------|-------------------|
+| Family trees        | parent_child    | Natural hierarchy |
+| Organization charts | parent_child    | Clear parent-child|
+| Social networks     | topological     | Complex cross-deps|
+| Knowledge graphs    | topological     | Intricate patterns|
+| Unknown structure   | topological     | Safe default      |
+
+### ⚙️ Advanced Configuration
+
+```python
+# High-performance configuration
+cpds = learner.learn_network_parallel(
+    data=data,
+    network_structure=network,
+    parallel_style='parent_child',
+    max_workers=4,           # Optimal for most systems
+    epochs=30,               # Good balance of quality/speed
+    network_type='advanced', # For complex learning
+    max_time_per_group=60   # Prevent timeouts
+)
+
+# Performance benchmarking
+results = learner.benchmark_parallel_performance(
+    data=data,
+    network_structure=network,
+    parallel_style='parent_child',
+    max_workers_list=[1, 2, 4],
+    epochs=20
+)
+```
+
+### 🎯 Best Practices
+
+1. **Start with parallel_style='topological' if unsure**
+2. **Use 2-4 workers for optimal performance**
+3. **Provide 500+ samples for reliable learning**
+4. **Monitor memory usage for large networks**
+5. **Implement error handling in production code**
+
+### 📊 Complete Examples
+
 ```python
 from deepparameters.core import DeepParametersLearner
 
@@ -182,73 +248,6 @@ cpds = learner.learn_network_parallel(
     verbose=True
 )
 ```
-
-# Basic example - starter guide for parallel configuration
-
-```python
-from deepparameters.core import DeepParametersLearner
-
-learner = DeepParametersLearner()
-
-# For hierarchical networks (recommended)
-cpds = learner.learn_network_parallel(
-    data=your_data,
-    network_structure=your_network,
-    parallel_style='parent_child'
-)
-
-# For complex interconnected networks (recommended)  
-cpds = learner.learn_network_parallel(
-    data=your_data,
-    network_structure=your_network,
-    parallel_style='topological'
-)
-```
-
-🎯 STYLE SELECTION GUIDE
-
-┌─────────────────────┬─────────────────┬──────────────────┐
-│ Your Network Type   │ Recommended     │ Why?             │
-├─────────────────────┼─────────────────┼──────────────────┤
-│ Family trees        │ parent_child    │ Natural hierarchy│
-│ Organization charts │ parent_child    │ Clear parent-child│
-│ Social networks     │ topological     │ Complex cross-deps│
-│ Knowledge graphs    │ topological     │ Intricate patterns│
-│ Unknown structure   │ topological     │ Safe default     │
-└─────────────────────┴─────────────────┴──────────────────┘
-
-⚙️ ADVANCED CONFIGURATION
-
-```python
-# High-performance configuration
-cpds = learner.learn_network_parallel(
-    data=data,
-    network_structure=network,
-    parallel_style='parent_child',
-    max_workers=4,           # Optimal for most systems
-    epochs=30,               # Good balance of quality/speed
-    network_type='advanced', # For complex learning
-    max_time_per_group=60   # Prevent timeouts
-)
-
-# Performance benchmarking
-results = learner.benchmark_parallel_performance(
-    data=data,
-    network_structure=network,
-    parallel_style='parent_child',
-    max_workers_list=[1, 2, 4],
-    epochs=20
-)
-```
-
-
-🎯 BEST PRACTICES
-
-1. Start with parallel_style='topological' if unsure
-2. Use 2-4 workers for optimal performance
-3. Provide 500+ samples for reliable learning
-4. Monitor memory usage for large networks
-5. Implement error handling in production code
 
 ## 🏗️ Architecture Overview
 
