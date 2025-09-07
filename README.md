@@ -183,6 +183,73 @@ cpds = learner.learn_network_parallel(
 )
 ```
 
+# Basic example - starter guide for parallel configuration
+
+```python
+from deepparameters.core import DeepParametersLearner
+
+learner = DeepParametersLearner()
+
+# For hierarchical networks (recommended)
+cpds = learner.learn_network_parallel(
+    data=your_data,
+    network_structure=your_network,
+    parallel_style='parent_child'
+)
+
+# For complex interconnected networks (recommended)  
+cpds = learner.learn_network_parallel(
+    data=your_data,
+    network_structure=your_network,
+    parallel_style='topological'
+)
+```
+
+🎯 STYLE SELECTION GUIDE
+
+┌─────────────────────┬─────────────────┬──────────────────┐
+│ Your Network Type   │ Recommended     │ Why?             │
+├─────────────────────┼─────────────────┼──────────────────┤
+│ Family trees        │ parent_child    │ Natural hierarchy│
+│ Organization charts │ parent_child    │ Clear parent-child│
+│ Social networks     │ topological     │ Complex cross-deps│
+│ Knowledge graphs    │ topological     │ Intricate patterns│
+│ Unknown structure   │ topological     │ Safe default     │
+└─────────────────────┴─────────────────┴──────────────────┘
+
+⚙️ ADVANCED CONFIGURATION
+
+```python
+# High-performance configuration
+cpds = learner.learn_network_parallel(
+    data=data,
+    network_structure=network,
+    parallel_style='parent_child',
+    max_workers=4,           # Optimal for most systems
+    epochs=30,               # Good balance of quality/speed
+    network_type='advanced', # For complex learning
+    max_time_per_group=60   # Prevent timeouts
+)
+
+# Performance benchmarking
+results = learner.benchmark_parallel_performance(
+    data=data,
+    network_structure=network,
+    parallel_style='parent_child',
+    max_workers_list=[1, 2, 4],
+    epochs=20
+)
+```
+
+
+🎯 BEST PRACTICES
+
+1. Start with parallel_style='topological' if unsure
+2. Use 2-4 workers for optimal performance
+3. Provide 500+ samples for reliable learning
+4. Monitor memory usage for large networks
+5. Implement error handling in production code
+
 ## 🏗️ Architecture Overview
 
 ### Neural Network Architectures
@@ -256,73 +323,6 @@ cpd = learn_cpd_for_node(
     random_state=42                 # Random seed for reproducibility
 )
 ```
-
-📋 BASIC USAGE
-──────────────
-```python
-from deepparameters.core import DeepParametersLearner
-
-learner = DeepParametersLearner()
-
-# For hierarchical networks (recommended)
-cpds = learner.learn_network_parallel(
-    data=your_data,
-    network_structure=your_network,
-    parallel_style='parent_child'
-)
-
-# For complex interconnected networks (recommended)  
-cpds = learner.learn_network_parallel(
-    data=your_data,
-    network_structure=your_network,
-    parallel_style='topological'
-)
-```
-
-🎯 STYLE SELECTION GUIDE
-────────────────────────
-┌─────────────────────┬─────────────────┬──────────────────┐
-│ Your Network Type   │ Recommended     │ Why?             │
-├─────────────────────┼─────────────────┼──────────────────┤
-│ Family trees        │ parent_child    │ Natural hierarchy│
-│ Organization charts │ parent_child    │ Clear parent-child│
-│ Social networks     │ topological     │ Complex cross-deps│
-│ Knowledge graphs    │ topological     │ Intricate patterns│
-│ Unknown structure   │ topological     │ Safe default     │
-└─────────────────────┴─────────────────┴──────────────────┘
-
-⚙️ ADVANCED CONFIGURATION
-─────────────────────────
-```python
-# High-performance configuration
-cpds = learner.learn_network_parallel(
-    data=data,
-    network_structure=network,
-    parallel_style='parent_child',
-    max_workers=4,           # Optimal for most systems
-    epochs=30,               # Good balance of quality/speed
-    network_type='advanced', # For complex learning
-    max_time_per_group=60   # Prevent timeouts
-)
-
-# Performance benchmarking
-results = learner.benchmark_parallel_performance(
-    data=data,
-    network_structure=network,
-    parallel_style='parent_child',
-    max_workers_list=[1, 2, 4],
-    epochs=20
-)
-```
-
-
-🎯 BEST PRACTICES
-─────────────────
-1. Start with parallel_style='topological' if unsure
-2. Use 2-4 workers for optimal performance
-3. Provide 500+ samples for reliable learning
-4. Monitor memory usage for large networks
-5. Implement error handling in production code
 
 
 ### 🔧 Neural Network Optimizer Options
