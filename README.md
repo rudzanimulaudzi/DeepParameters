@@ -1,8 +1,8 @@
 # DeepParameters Documentation
 
-**Human-readable documentation for the `deepparameters` Python package — v2.0.9.**
+**Updated documentation for the `deepparameters` Python package — v2.0.9.**
 
-This folder is your reference point for understanding, using, and developing the package. Start here.
+This folder is your reference point for understanding, using, and contributing to developing the package. Start here.
 
 ---
 
